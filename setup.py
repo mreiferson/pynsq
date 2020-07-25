@@ -1,5 +1,6 @@
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
+from os import path
 import sys
 
 
@@ -19,10 +20,17 @@ class PyTest(TestCommand):
 version = '0.9.0'
 
 
+cd = path.abspath(path.dirname(__file__))
+with open(path.join(cd, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
+
+
 setup(
     name='pynsq',
     version=version,
     description='official Python client library for NSQ',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     keywords='python nsq',
     author='Matt Reiferson',
     author_email='snakes@gmail.com',
